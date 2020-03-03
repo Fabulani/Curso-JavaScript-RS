@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <title>Rocketseat: Curso de JavaScript</title>
+        </meta>
+    </head>
+    <body>
+        <div id="app">
+            <button class="button">Press me</button>
+            <div class="box"></div>
+        </div>
+
+        <script>
+            var boxElement = document.querySelector(".box");
+            var btnElement = document.querySelector("button.button");
+            btnElement.onclick = function(){
+                var box = document.createElement('div');
+                box.style.height = 100;
+                box.style.width = 100;
+                box.style.backgroundColor = "#"+((1<<24)*Math.random()|0).toString(16);  // Random color.
+                document.body.appendChild(box);
+            }
+        </script>
+    </body>
+</html>
