@@ -7,18 +7,28 @@
     <body>
         <div id="app">
             <button class="button">Press me</button>
-            <div class="box"></div>
         </div>
 
         <script>
-            var boxElement = document.querySelector(".box");
+            var containerElement = document.querySelector("#app");
             var btnElement = document.querySelector("button.button");
+            var boxes = document.getElementsByClassName('box');
+
+            function changeColour(box){
+                return "#"+((1<<24)*Math.random()|0).toString(16);  // Random colour
+            }
+
             btnElement.onclick = function(){
-                var box = document.createElement('div');
+                var box = document.createElement('div');                
                 box.style.height = 100;
                 box.style.width = 100;
-                box.style.backgroundColor = "#"+((1<<24)*Math.random()|0).toString(16);  // Random color.
-                document.body.appendChild(box);
+                box.style.backgroundColor = "#f00"
+
+                box.onmouseover = function () {
+                    box.style.backgroundColor = changeColour();
+                }
+                
+                containerElement.appendChild(box);
             }
         </script>
     </body>
