@@ -6,6 +6,9 @@
     </head>
     <body>
         <div id="app">
+            <input type="text" name="nome">
+            <button class = "add" onClick="adicionar()">Add</button>
+            <ul class="list">List</ul>
             <button class="button">Press me</button>
         </div>
 
@@ -13,23 +16,45 @@
             var containerElement = document.querySelector("#app");
             var btnElement = document.querySelector("button.button");
             var boxes = document.getElementsByClassName('box');
+            var listElement = document.querySelector("ul.list");
+            var inputElement = document.querySelector("input[name=nome]");
+            var btnAddElement = document.querySelector("button.add")
+            var nomes = ["Diego", "Gabriel", "Lucas"];
 
-            function changeColour(box){
-                return "#"+((1<<24)*Math.random()|0).toString(16);  // Random colour
+            for (i = 0; i < nomes.length; i++){  // Add names to the list.
+                var node = document.createElement("li");
+                var textnode = document.createTextNode(nomes[i]);
+                node.appendChild(textnode);
+                listElement.appendChild(node);
             }
 
-            btnElement.onclick = function(){
+            function changeColour(box){  // Return a random colour.
+                return "#"+((1<<24)*Math.random()|0).toString(16);
+            }
+
+            btnElement.onclick = function(){  // Create red boxes on click.
                 var box = document.createElement('div');                
                 box.style.height = 100;
                 box.style.width = 100;
                 box.style.backgroundColor = "#f00"
 
-                box.onmouseover = function () {
+                box.onmouseover = function () {  // Change box's color to a random one on mouseover.
                     box.style.backgroundColor = changeColour();
                 }
                 
                 containerElement.appendChild(box);
             }
+
+            function adicionar(){  // Add input text to the list as an item.
+                inputText = inputElement.value;
+                inputElement.value = "";
+                var node = document.createElement("li");
+                var textnode = document.createTextNode(inputText);
+                node.appendChild(textnode);
+                listElement.appendChild(node);
+            }
+
+
         </script>
     </body>
 </html>
