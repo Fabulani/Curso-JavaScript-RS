@@ -8,42 +8,17 @@ var input = document.querySelector("#app input");
 var button = document.querySelector("#app button");
 
 function checaIdade(idade) {
-    // Retornar uma promise
-}
-
-// checaIdade(20)
-//     .then(function() {
-//     console.log("Maior que 18");
-//     })
-//     .catch(function() {
-//     console.log("Menor que 18");
-//     });
-  
-
-
-function checkAgePromise(){
-    age = Number(input.value);
-    if (isNaN(age) == false){
-        return new Promise(function(resolve, reject){
-            if (age >= 18){
-                resolve('Maior de idade (' + age + ')');
-            } else{
-                reject('Menor de idade (' + age + ')');
-            }
-        });
-    } else{
-        console.log(age);
-    }
-}
-
-checkAgePromise()
-    .then(function(response) {
-        console.log(response);
-    })
-    .catch(function(error) {
-        console.log(error);
+    return new Promise(function(resolve, reject){
+        setTimeout(function() {
+            return idade >= 18 ? resolve() : reject();
+        }, 2000);
     });
+}
 
-button.onclick = checkAgePromise();
-
-
+checaIdade(10)
+    .then(function() {
+        console.log("Maior que 18");
+    })
+    .catch(function() {
+        console.log("Menor que 18");
+    });
